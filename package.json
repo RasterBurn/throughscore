@@ -9,7 +9,6 @@
   "author": "Dan Harbin <dan.harbin@gmail.com>",
   "license": "BSD",
   "dependencies": {
-    "event-stream": "~3.1.0",
     "chainsaw": "~0.1.0",
     "through": "~2.3.4"
   },
