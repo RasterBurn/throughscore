@@ -118,3 +118,19 @@ describe('_.forEach', function () {
 
 	xit('should operate on objects');
 });
+
+describe('_.initial', function () {
+	it('should get all but the last element of the array when no argument passed', function (done) {
+		_([1, 2, 3]).initial().then(function (data) {
+			data.should.eql([1, 2]);
+			done();
+		});
+	});
+
+	it('should get the last n elements of the array', function (done) {
+		_([1, 2, 3]).initial(2).then(function (data) {
+			data.should.eql([1]);
+			done();
+		});
+	});
+});
