@@ -10,7 +10,9 @@
   "license": "BSD",
   "dependencies": {
     "chainsaw": "~0.1.0",
-    "through": "~2.3.4"
+    "through": "~2.3.4",
+    "CBuffer": "~0.1.4",
+    "es6-collections": "~0.2.0"
   },
   "devDependencies": {
     "chai": "~1.9.0",

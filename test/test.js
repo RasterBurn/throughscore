@@ -133,4 +133,125 @@ describe('_.initial', function () {
 			done();
 		});
 	});
+
+	xit('should take a callback in place of a number');
+
+	xit('should create a "_.pluck" style callback if a property name is provided');
+
+	xit('should create a "_.where" style callback if an object is provided');
+});
+
+describe('_.intersection', function () {
+	it('should create an array of unique values present in all provided arrays', function (done) {
+		_([1, 2, 3]).intersection([5, 2, 1, 4], [2, 1]).then(function (data) {
+			data.should.eql([1, 2]);
+			done();
+		});
+	});
+
+	it('should use strict equality', function (done) {
+		_([1, 2, 3]).intersection([1, "2"]).then(function (data) {
+			data.should.eql([1]);
+			done();
+		});
+	});
+});
+
+describe('_.first', function () {
+	it('should get the first element of the array when no argument passed', function (done) {
+		_([1, 2, 3]).first().then(function (data) {
+			data.should.eql([1]);
+			done();
+		});
+	});
+
+	it('should get the first n elements of the array', function (done) {
+		_([1, 2, 3]).first(2).then(function (data) {
+			data.should.eql([1, 2]);
+			done();
+		});
+	});
+
+	xit('should take a callback in place of a number');
+
+	xit('should create a "_.pluck" style callback if a property name is provided');
+
+	xit('should create a "_.where" style callback if an object is provided');
+
+});
+
+describe('_.last', function () {
+	it('should get the last element of the array when no argument passed', function (done) {
+		_([1, 2, 3]).last().then(function (data) {
+			data.should.eql([3]);
+			done();
+		});
+	});
+
+	it('should get the last n elements of the array', function (done) {
+		_([1, 2, 3]).last(2).then(function (data) {
+			data.should.eql([2, 3]);
+			done();
+		});
+	});
+
+	xit('should take a callback in place of a number');
+
+	xit('should create a "_.pluck" style callback if a property name is provided');
+
+	xit('should create a "_.where" style callback if an object is provided');
+});
+
+describe('_.pull', function () {
+	it('should remove all provided values', function (done) {
+		_([1, 2, 3, 1, 2, 3]).pull(2, 3).then(function (data) {
+			data.should.eql([1, 1]);
+			done();
+		});
+	});
+
+	it('should use strict equality', function (done) {
+		_([1, 2, 3]).pull("1", 2).then(function (data) {
+			data.should.eql([1, 3]);
+			done();
+		});
+	});
+});
+
+describe('_.rest', function () {
+	it('should get all but the first element of the array when no argument passed', function (done) {
+		_([1, 2, 3]).rest().then(function (data) {
+			data.should.eql([2, 3]);
+			done();
+		});
+	});
+
+	it('should get all but the first n elements of the array', function (done) {
+		_([1, 2, 3]).rest(2).then(function (data) {
+			data.should.eql([3]);
+			done();
+		});
+	});
+
+	xit('should take a callback in place of a number');
+
+	xit('should create a "_.pluck" style callback if a property name is provided');
+
+	xit('should create a "_.where" style callback if an object is provided');
+});
+
+describe('_.union', function () {
+	it('should create a stream of unique values', function (done) {
+		_([1, 2, 3]).union([5, 2, 1, 4], [2, 1]).then(function (data) {
+			data.should.eql([1, 2, 3, 5, 4]);
+			done();
+		});
+	});
+
+	it('should use strict equality for comparisons', function (done) {
+		_([1, 2, 3]).union(["2"]).then(function (data) {
+			data.should.eql([1, 2, 3, "2"]);
+			done();
+		});
+	});
 });
