@@ -202,22 +202,6 @@ describe('_.last', function () {
 	xit('should create a "_.where" style callback if an object is provided');
 });
 
-describe('_.pull', function () {
-	it('should remove all provided values', function (done) {
-		_([1, 2, 3, 1, 2, 3]).pull(2, 3).then(function (data) {
-			data.should.eql([1, 1]);
-			done();
-		});
-	});
-
-	it('should use strict equality', function (done) {
-		_([1, 2, 3]).pull("1", 2).then(function (data) {
-			data.should.eql([1, 3]);
-			done();
-		});
-	});
-});
-
 describe('_.rest', function () {
 	it('should get all but the first element of the array when no argument passed', function (done) {
 		_([1, 2, 3]).rest().then(function (data) {
@@ -251,6 +235,76 @@ describe('_.union', function () {
 	it('should use strict equality for comparisons', function (done) {
 		_([1, 2, 3]).union(["2"]).then(function (data) {
 			data.should.eql([1, 2, 3, "2"]);
+			done();
+		});
+	});
+});
+
+describe('_.uniq', function () {
+	it('should create a duplicate-free version of an array', function (done) {
+		_([1, 2, 1, 3, 1]).uniq().then(function (data) {
+			data.should.eql([1, 2, 3]);
+			done();
+		});
+	});
+
+	it('should use a faster algorithm if the array is sorted', function (done) {
+		_([1, 1, 2, 2, 3]).uniq(true).then(function (data) {
+			data.should.eql([1, 2, 3]);
+			done();
+		});
+	});
+
+	it('should pass values through a callback function before uniqueness is computed', function (done) {
+		_(['A', 'b', 'C', 'a', 'B', 'c']).uniq(function (letter) {
+			return letter.toLowerCase();
+		}).then(function (data) {
+			data.should.eql(['A', 'b', 'C']);
+			done();
+		});
+	});
+
+	it('should bind context to that callback function', function (done) {
+		_([1, 2.5, 3, 1.5, 2, 3.5]).uniq(function (num) {
+			return this.floor(num);
+		}, Math).then(function (data) {
+			data.should.eql([1, 2.5, 3]);
+			done();
+		});
+	});
+
+	it('should use strict equality for comparisons', function (done) {
+		_([1, "1", 1]).uniq().then(function (data) {
+			data.should.eql([1, "1"]);
+			done();
+		});
+	});
+
+	xit('should create a "_.pluck" style callback if a property name is provided');
+
+	xit('should create a "_.where" style callback if an object is provided');
+});
+
+describe('_.without', function () {
+	it('should create an array excluding all provided values', function (done) {
+		_([1, 2, 1, 0, 3, 1, 4]).without(0 ,1).then(function (data) {
+			data.should.eql([2, 3, 4]);
+			done();
+		});
+	});
+
+	it('should use strict equality for comparisons', function (done) {
+		_([1, "1"]).without("1").then(function (data) {
+			data.should.eql([1]);
+			done();
+		});
+	});
+});
+
+describe('_.zip', function () {
+	it('should create an array of grouped elements, grouped by index', function (done) {
+		_(['fred', 'barney']).zip([30, 40], [true, false]).then(function (data) {
+			data.should.eql([['fred', 30, true], ['barney', 40, false]]);
 			done();
 		});
 	});
