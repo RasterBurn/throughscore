@@ -52,6 +52,18 @@ describe('_.filter', function () {
 		});
 	});
 
+	it('should pass the value and and index to the callback', function (done) {
+		var test_one = function (idx) { idx.should.eql(0); };
+		var test_two = function (idx) { idx.should.eql(1); };
+
+		_([test_one, test_two]).filter(function (test, idx) {
+			test(idx);
+			return true;
+		}).then(function (data) {
+			done();
+		});
+	});
+
 	xit('should filter using "_.pluck" callback shorthand', function (done) {
 	});
 
@@ -309,3 +321,4 @@ describe('_.zip', function () {
 		});
 	});
 });
+
